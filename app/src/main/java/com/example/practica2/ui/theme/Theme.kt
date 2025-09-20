@@ -102,7 +102,7 @@ fun Practica2Theme(
 }
 
 @Composable
-fun AppTheme(
+fun Practica2Theme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
