@@ -2,7 +2,6 @@ package com.example.practica2.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Colores claros
 val md_theme_light_primary = Color(0xFF825500)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFFFDDB3)
@@ -38,8 +37,6 @@ val md_theme_light_surfaceTint = Color(0xFF825500)
 val md_theme_light_outlineVariant = Color(0xFFD2C4B4)
 val md_theme_light_scrim = Color(0xFF000000)
 
-
-// Colores oscuros
 val md_theme_dark_primary = Color(0xFFFFB951)
 val md_theme_dark_onPrimary = Color(0xFF452B00)
 val md_theme_dark_primaryContainer = Color(0xFF633F00)
