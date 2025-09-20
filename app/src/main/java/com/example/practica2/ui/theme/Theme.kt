@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 
+// Definición de esquemas de colores
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
@@ -80,6 +81,7 @@ private val DarkColors = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
+// Función de tema principal con opciones dinámicas
 @Composable
 fun Practica2Theme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
@@ -102,7 +104,7 @@ fun Practica2Theme(
 }
 
 @Composable
-fun Practica2Theme(
+fun AppTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

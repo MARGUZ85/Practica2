@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Practica2</string>
+    <string name="twenty_mins_ago">20 mins ago</string>
 </resources>

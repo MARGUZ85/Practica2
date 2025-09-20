@@ -5,19 +5,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.Star
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.practica2.ui.theme.Practica2Theme
+import com.example.practica2.ui.components.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +40,9 @@ class MainActivity : ComponentActivity() {
                         },
                         modifier = Modifier.fillMaxSize()
                     ) { innerPadding ->
-                        MessageList(
-                            messages = sampleMessages,
+                        ReplyListContent(
+                            emails = sampleEmails,
+                            onEmailSelected = { },
                             modifier = Modifier.padding(innerPadding)
                         )
                     }
@@ -49,62 +52,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-data class Message(
-    val sender: String,
-    val time: String,
-    val content: String,
-    val isStarred: Boolean = false,
-    val isImportant: Boolean = false
+val sampleEmails = listOf(
+    Email(1, Sender("Google"), true, "20 mins ago", "Package shipped!", "Cucumber Mask Facial has shipped."),
+    Email(2, Sender("Ali"), false, "40 mins ago", "Brunch this weekend?", "I'll be in your neighborhood doing errands."),
+    Email(3, Sender("Allison"), false, "1 hour ago", "Bonjour from Paris", "Here are some great shots from my trip."),
+    Email(4, Sender("Kim"), false, "2 hours ago", "High school reunion?", "Hi friends, hope you are doing well!")
 )
-
-val sampleMessages = listOf(
-    Message("Google", "20 mins ago", "Package shipped! Cucumber Mask Facial has shipped.", isImportant = true),
-    Message("Ali", "40 mins ago", "Brunch this weekend? I'll be in your neighborhood doing errands."),
-    Message("Allison", "1 hour ago", "Bonjour from Paris. Here are some great shots from my trip."),
-    Message("Kim", "2 hours ago", "High school reunion? Hi friends, hope you are doing well!")
-)
-
-@Composable
-fun MessageList(messages: List<Message>, modifier: Modifier = Modifier) {
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(messages) { msg ->
-            MessageCard(msg)
-        }
-    }
-}
-
-@Composable
-fun MessageCard(message: Message) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(
-            containerColor = if (message.isImportant)
-                MaterialTheme.colorScheme.secondaryContainer
-            else MaterialTheme.colorScheme.surfaceVariant
-        )
-    ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(text = message.sender, style = MaterialTheme.typography.titleMedium)
-                Icon(
-                    imageVector = if (message.isStarred) Icons.Filled.Star else Icons.Outlined.Star,
-                    contentDescription = "Starred"
-                )
-            }
-            Text(text = message.time, style = MaterialTheme.typography.bodySmall)
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(text = message.content, style = MaterialTheme.typography.bodyMedium)
-        }
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
@@ -122,7 +75,11 @@ fun PreviewReplyApp() {
                     }
                 }
             ) { innerPadding ->
-                MessageList(sampleMessages, modifier = Modifier.padding(innerPadding))
+                ReplyListContent(
+                    emails = sampleEmails,
+                    onEmailSelected = { },
+                    modifier = Modifier.padding(innerPadding)
+                )
             }
         }
     }

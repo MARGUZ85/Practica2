@@ -1,18 +1,28 @@
 package com.example.practica2.ui.components
 
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.runtime.Composable
-import com.example.practica2.data.Email
+import androidx.compose.ui.Modifier
 
 @Composable
-fun ReplyListContent() {
-    LargeFloatingActionButton(
-        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-        contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
-        onClick = {
-
+fun ReplyListContent(
+    emails: List<Email>,
+    onEmailSelected: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(modifier = modifier) {
+        items(emails) { email ->
+            ReplyEmailListItem(
+                email = email,
+                isSelected = false,
+                navigateToDetail = onEmailSelected
+            )
         }
-    ) {
     }
 }
